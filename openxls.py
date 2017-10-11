@@ -1,14 +1,17 @@
-import openpyxl
+import openpyxl, pprint, csv
 wb = openpyxl.load_workbook('example.xlsx')
-# sheet = wb.get_sheet_by_name('Sheet1')
-# print(tuple(sheet['A1':'C3']))
+sheet = wb.get_sheet_by_name('Sheet1')
 
-# for rowOfCellObjects in sheet['A1':'C3']:
-#     for cellObj in rowOfCellObjects:
-#         print(cellObj.coordinate,cellObj.value)
-#     print('---END OF ROW---')
+diffCount = 0
+print("Loading file...")
+with open('diffproducts.csv', 'w',newline='') as csvfile:
+    filewriter = csv.writer(csvfile)
+    for rowOfCellObjects in sheet['A1':'B12775']:
+        if rowOfCellObjects[0].value != rowOfCellObjects[1].value:
+           filewriter.writerow([rowOfCellObjects[0].value, rowOfCellObjects[1].value])
+           diffCount += 1
+    
+print("Done.")
+print(diffCount)
 
-sheet = wb.active
-list(sheet.columns)[1]
-for cellObj in list(sheet.columns)[1]:
-    print(cellObj.value)
+
