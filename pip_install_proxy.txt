@@ -1,0 +1,4 @@
+
+
+pip install --proxy http://PITC-Zscaler-ASPAC-Singapore3PR.proxy.corporate.ge.com:80 pyperclip
+pip install --proxy http://PITC-Zscaler-ASPAC-Singapore3PR.proxy.corporate.ge.com:80 requests
