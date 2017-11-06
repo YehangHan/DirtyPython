@@ -1,7 +1,7 @@
 #! python3
 # backupToZip.py - Copies an entire folder and its contents into
 # a ZIP file whose filename increments.
-#
+# add extra parameter to backup different kind of files
 import zipfile, os
 
 
@@ -33,10 +33,11 @@ def backupToZip(folder,ext):
             newBase = os.path.basename(folder) + '_'
             if filename.startswith(newBase) and filename.endswith('.zip'):
                    continue   # don't backup the backup ZIP files
-            if(filename.endswith(ext)):       
+            if(filename.endswith(ext)):  
+                print(os.path.join(foldername, filename))     
                 backupZip.write(os.path.join(foldername, filename))
     backupZip.close()
     print('Done.')
 
-backupToZip(r'dir','.pdf')
+backupToZip(r'C:\test','.txt')
     
